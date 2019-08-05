@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>
+            lice
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> 
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+        <style>
+            .card{
+                background-color: rgb(223, 228, 233);
+            }
+            input,select{
+                background-color:rgb(223, 228, 233);
+                border: none;
+            }
+            #home {
+                background-image: url(edit.png);
+                width: 30px;
+                height: 30px;
+                background-position: 4px 4px;
+                }
+            .card-title{
+                background-color:rgb(217, 226, 235);
+            }    
+        </style>
+        <script type="text/JavaScript">
+           const edit=()=>
+           {
+               console.log("alloww");
+               document.getelementbyId("name").value=" ";
+               document.getelementbyId("idnum").value=" ";
+               document.getelementbyId("add").value=" ";
+           }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <div class="container py-3">
+                    <input type="button" value="edit" onclick="edit()">
+                <div class="col-sm-5">
+                    <div class="card" >
+                        <div class="card-body">
+                            <h5 class="card-title">DRIVING LICENSE</h5>
+                            <div class="card-text">
+                                <div class="row">
+                                    <div class="col">
+                                    <img src="index.png" class=" p-0 w-30 h-350 " style="height:4cm; width:4cm" />
+                                
+                                    </div>
+                                <div class="col">
+                                    Name<input type="text" id="name">
+                                    ID<input type="number" id="idnum">
+                                    DOB<input type="date" id="date">
+                                    ADDRESS<input type="text" id="add"><br>
+                                    Blood group<select id="sgn"><option>-</option><option>+</option></select><select id="bg"><option>A</option><option>B</option><option>AB</option><option>O</option></option></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </body>
+</html>

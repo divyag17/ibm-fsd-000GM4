@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <title> Jquery Validation</title>
+        <link href="jquery-ui.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <!--<link rel="stylesheet" href="jquery-ui-theme.css" />-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" integrity="sha256-p6xU9YulB7E2Ic62/PX+h59ayb3PBJ0WFTEQxq0EjHw=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/dark-hive/jquery-ui.min.css" integrity="sha256-eZniZ8LGwFHGy3Dndt7l7eKikb8Dg+d2e1AvTP5NWPg=" crossorigin="anonymous" />
+  
+  <style>
+  .ui-menu { width: 150px; }
+  body{
+		font-family: "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	select {
+		width: 200px;
+	}
+  </style>
+  <script type="text/javascript"> 
+    const localstorage=()=>{
+    // the_key=document.getElementById('username').value;
+    // the_pd=document.getElementById('password').value;
+    // the_email=document.getElementById('email').value;
+    // the_fname=document.getElementById('fname').value;
+    // localStorage.setItem(the_key,JSON.stringify({password:the_pd,email:the_email,fnaame:the_fname}));
+       
+    }
+  </script>
+  <script type="text/javascript"> 
+    $(document).ready(()=>{
+        $('#tab2-btn').click(()=>{
+            let key = $('#username').val();
+           let the_pd = $('#password').val();
+            let the_email = $('#email').val();
+            let the_fname = $('#fname').val();
+            localStorage.setItem(key,JSON.stringify({username:key,password:the_pd,email:the_email,fname:the_fname}));
+   
+        });
+    $('#save').button();
+    // radio buttons
+    //$('#gender').checkboxradio();
+    //$('#languages').radio();
+    $('#tabs').tabs({
+           // specify default selected tab
+           active: 0
+       });
+       $('#tabsone').tabs({
+           // specify default selected tab
+           active: 0
+       });
+       $('#top-menu').menu({
+          
+       });
+       $('#progress-bar').progressbar({
+        value : 70
+       });
+       
+       $('#draggable').draggable();
+       $('#dropable').droppable();
+       $('#sortable').sortable();
+       $('#accordion').accordion();
+       
+       //end of ready function
+    });
+    </script>
+    </head>
+    <body>
+            <div id="accordion">
+                    <h3>menu</h3>
+                    <div>xxxxxxxxxxxxxxxx</div>
+                    <h3>about us</h3>
+                    <div>yyyyyyyyyyyyyyyy</div>
+                    <h3>contact</h3>
+                    <div>zzzzzzzzz</div>
+                </div>
+                
+    <div id="tabsone">
+        <ul>
+            <li><a href="#tab1">Login</a></li>
+            <li><a href="#tab2">Register</a></li>
+            
+        </ul>
+        <div id="tab1">
+            <form>
+                USERNAME<input type="text" id="username"/>  <br>    
+                PASSWORD<input type="password" id="password"/><br>
+                <input type="checkbox" name="remember" id="remember" />
+                <label for="remember">Remember me</label><br>
+                <input type="submit" id="tab1-btn" value="Login" />
+                </form>
+        </div>
+        <div id="tab2">
+                <form id="frm-signup" action="">
+                        USERNAME<input type="text" id="username" name="username"/>  <br>    
+                        PASSWORD<input type="password" id="password" name="password"/><br>
+                        re-typePASSWORD<input type="text" /><br>
+                        email<input type="text" id="email" name="email"/><br>
+                        full name<input type="text" id="fname" name="fname"/><br>
+                        <input type="submit" id="tab2-btn" value="signup" onclick="localstore()"/>
+                </form>
+        </div>
+        
+    </div>
+</body>
+</html>
