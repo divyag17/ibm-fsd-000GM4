@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>
+            Users Page
+        </title>
+        <script type="text/javascript">
+        
+        const save = ()=>{
+            const _url = 'http://localhost:1269/users';
+            const url = 'http://localhost:1269/projects';
+            fetch(_url,{})
+            .then(res=>res.json())
+            .then(users=>{
+                createuser(users);
+               
+            })
+            fetch(url,{headers:{
+                        'content-type': 'application/json'
+                    }})
+            .then(res=>res.json())
+            .then(projects=>{
+                
+                createproject(projects);
+            })
+        }
+        const createuser=(data)=>
+        {   const uname=document.getElementById('uname');
+            let rows = '';
+            const url = 'http://localhost:1269/associate';
+            
+                data.users.forEach((uname)=>{
+                   
+                     rows += `<option value=${uname.name}> ${uname.name} </option> `
+            });
+               
+            
+            uname.innerHTML=rows;
+        }
+        const   createproject=(data)=>
+        {
+            const project=document.getElementById('projects');
+                let rows = '';
+                data.projects.forEach((pname)=>{
+                    rows += `<option value=${pname.name}> ${pname.name} </option> `
+                });
+                project.innerHTML=rows;  
+        }
+
+        const add=()=>
+        {   uname=document.getElementById('uname').value;
+            pname=document.getElementById('projects').value;
+            const baseUrl = 'http://localhost:1269/associate/';
+            fetch(baseUrl+'/add',{
+                    method : 'POST',
+                    headers:{
+                      'content-type': 'application/json'
+                    },
+                    body:JSON.stringify({
+                            username : uname ,
+                            projectname: pname
+                        })
+                })
+                .then(response=>response.json())
+                .then(data=>{
+                    createTable(data);
+                });
+        }
+        const createTable = (data)=>{
+            let rows = '';
+            data.associate.forEach((u) => {
+                rows += `<tr>
+                            <td>${u.username}</td>
+                            <td>${u.projectname}</td>
+                        </tr>`
+            });
+            const _table = `<table>
+                                <tr>
+                                    <th>Name</th>
+                                    
+                                    <th>project</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+            document.getElementById('users').innerHTML = _table;
+        }
+        </script>
+    </head>
+    <body onload="save()">
+        <fieldset >
+        <select id="uname">
+            <option>select user</option>
+        </select><br><br>
+        <select id="projects">
+            <option >select project</option>
+         </select><br>
+        </fieldset>
+        <input type="button" id="save" onclick="add()"  value="ADD"/>
+    <div id="users">
+
+    </div>
+    </body>
+</html>

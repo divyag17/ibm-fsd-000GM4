@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <title>Buy Page</title>
+    <style>
+        body{
+            background : url("thanku.jpg")
+        }
+    </style>
+    <script>
+        const buy = () =>{
+            name= prompt("enter your name");
+            email=prompt("enter your email address");
+            if (name!='' || email!=''){
+                let b_url = 'http://localhost:1269/cart/buy';
+                fetch(b_url,{
+                    method : 'POST',
+                    headers : {
+                        'content-type' : 'application/json'
+                    },
+                    body : JSON.stringify({
+                        name : name,
+                        email : email
+                    })
+            })
+                alert("thank u");
+            }
+        }    
+    </script>
+</head>
+<body onload="buy()" >
+    
+
+</body>
+</html>

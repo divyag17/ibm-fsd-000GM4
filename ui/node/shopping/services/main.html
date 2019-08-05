@@ -1,0 +1,100 @@
+<html>
+    <title>
+        shopping portal
+    </title>
+    <style type="text/css">
+        fieldset{
+            width: 40%;
+            height: 70%;
+            box-align: center;
+            margin-left: 35%;
+            margin-right: 35%;
+        }
+        #tb{
+            box-align: center;
+            margin-left: 35%;
+            margin-right: 35%;
+        }
+        td,th,legend{
+            font-size: 20px;
+        }
+        body{
+            /* background: url("bg.png"); */
+        }
+        </style>
+    <script type="text/javascript">
+    const show = ()=>{
+            const _url = 'http://localhost:1269/items';
+            fetch(_url,{})
+            .then(res=>res.json())
+            .then(items=>{
+                createitem(items);
+               
+            })
+        }
+        const createitem = (data)=>{
+            let rows = '';
+            data.items.forEach((u) => {
+                rows += `<tr>
+                            <td>${u.id}</td>
+                            <td>${u.name}</td>
+                            <td>${u.price}</td>
+                            <td><button onclick="cart('${u.id}','${u.name}','${u.price}')">add item to cart</button></td>
+                        </tr>`
+            });
+            const _table = `<table>
+                                <tr>
+                                    <th>id</th>
+                                    <th>name</th>
+                                    <th>price</th>
+                                </tr>
+                                ${rows}
+                            </table>`
+            document.getElementById('item').innerHTML = _table;
+        }
+        const search=()=>
+        {}
+        const cart=(id,name,price)=>
+        {   let quantity=1;
+            
+            const baseUrl = 'http://localhost:1269/cart';
+            fetch(baseUrl+'/add',{
+                
+                method : 'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                        id :id ,
+                        name: name,
+                        price:parseInt(price),
+                        quantity:quantity
+                        
+                    })
+                })
+                
+        }
+
+    </script>
+    <head>
+
+    </head>
+    <body onload="show()">
+        <table id="tb">
+           <tr><td> <input type="text" placeholder="search.." id="search"></td>
+           <td> <input type="button" value="search" id="submit" onclick="search()"></td>
+       
+            <td><a href="cartpage.html"><img src="cartimg.png" width="30px" height="30px"></a></td>
+            </tr>
+    </table>
+        <fieldset ><legend>
+            PRODUCTS
+                 </legend>
+                <div id="item">
+
+                </div>
+
+        </fieldset>
+    </body>
+</html>
+
