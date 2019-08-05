@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        TIME TABLE
+    </title>
+</script>
+<style type="text/css">
+   table{
+       margin-top: 20px;
+       border: 1px solid black;
+       border-radius: 4px;
+       text-align: center;
+       width: 50%;
+       height: 30%;
+   }
+   tr{
+       vertical-align: top;
+   }
+   
+   td{
+      
+       padding: 1 1 1 1px;
+   }
+  fieldset{
+    /* background-color: rgb(212, 176, 127); */
+    box-align: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    height:70%;
+    
+    }
+   </style>
+    <script type="text/javascript" src="time.js"></script>
+</head>
+<body>
+        <div id="edit_details">
+        <div class="tt_div">
+        <fieldset class="tt_fieldset">
+            <legend>
+                timetable
+            </legend>
+            Choose class<select id="search" onchange="search()">
+                    <option value="">-select-</option>
+                    <option value="classA">Class A</option>
+                    <option value="classB">Class B</option>
+                </select>
+                <br>
+                <table border="2" id="row">
+                </table>
+        </fieldset>
+        </div>
+        <fieldset><div class="trainer_div">
+                <form name="for">
+                        trainer name<input type="text" name="tname" id="tname"/><br>
+                        trainer skill<select id="tskill"  >
+                                <option value="">select</option>
+                                <option value="maths">maths</option>
+                                <option value="science">science</option>
+                                <option value="english">english</option>
+                                <option value="social">social</option>
+                                </select><br>
+                                
+                        <input type="button" value="save" onclick="save()" onload=""/>    
+                    </form> 
+        </div>
+    </fieldset>
+    <fieldset>
+        <form>
+            class<select id="class" >
+                    <option value="">-select-</option>
+                    <option value="class A">class A</option>
+                    <option value="class B">class B</option>
+                </select><br>
+            session<select id="session" >
+                    <option value="">-select-</option>
+                    <option value="s1">s1</option>
+                    <option value="s2">s2</option>
+                    <option value="s3">s3</option>
+                    <option value="s4">s4</option>
+                    <option value="s5">s5</option>
+                    <option value="s6">s6</option>
+                </select><br>
+            subject<select id="sub" onclick="subject()" >
+                    <option value="">-select-</option>
+                    <option value="maths">maths</option>
+                    <option value="science">science</option>
+                    <option value="english">english</option>
+                    <option value="social">social</option>
+                        </select><br>
+            trainer<select id="trainer">
+                
+                
+                    </select>
+                    <br>
+           <input type="button" class="trainer_save" id="trainer_save" value="Save" onclick="trainerdetails()"/>
+            </form>
+    </fieldset>
+    </body>
+</html>

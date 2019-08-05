@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title>
+            game
+        </title>
+        <style>
+            table
+            {
+            margin: auto;
+            font-family: arial;
+            }
+
+            td
+            {
+            height: 200px;
+            width: 200px;
+            background-color: lightgrey;
+            overflow: hidden;
+            }
+
+        </style>
+        <script type="text/javascript">
+            var chance=0;
+            var count=0;
+            const xwin=()=>
+        {   
+            var c1=document.getElementById('c1');
+            var c2=document.getElementById('c2');
+            var c3=document.getElementById('c3');
+            var c4=document.getElementById('c4');
+            var c5=document.getElementById('c5');
+            var c6=document.getElementById('c6');
+            var c7=document.getElementById('c7');
+            var c8=document.getElementById('c8');
+            var c9=document.getElementById('c9');
+            if(c1.innerHTML == "x" && c2.innerHTML == "x" && c3.innerHTML == "x"){
+                add('c1','c2','c3'); alert("x won");
+            }
+            if(c1.innerHTML == "x" && c4.innerHTML == "x" && c7.innerHTML == "x"){add('c1','c4','c7'); alert("x won")}
+            if(c1.innerHTML == "x" && c5.innerHTML == "x" && c9.innerHTML == "x"){add('c1','c5','c9'); alert("x won")}
+            if(c2.innerHTML == "x" && c5.innerHTML == "x" && c8.innerHTML == "x"){add('c2','c5','c8'); alert("x won")}
+            if(c3.innerHTML == "x" && c6.innerHTML == "x" && c9.innerHTML == "x"){add('c3','c6','c9'); alert("x won")}
+            if(c3.innerHTML == "x" && c5.innerHTML == "x" && c7.innerHTML == "x"){add('c3','c5','c7'); alert("x won")}
+            if(c4.innerHTML == "x" && c5.innerHTML == "x" && c6.innerHTML == "x"){add('c4','c5','c6'); alert("x won")}
+            if(c7.innerHTML == "x" && c9.innerHTML == "x" && c8.innerHTML == "x"){add('c7','c9','c8'); alert("x won")}
+        }
+        const owin=()=>
+        {   var c1=document.getElementById('c1');
+            var c2=document.getElementById('c2');
+            var c3=document.getElementById('c3');
+            var c4=document.getElementById('c4');
+            var c5=document.getElementById('c5');
+            var c6=document.getElementById('c6');
+            var c7=document.getElementById('c7');
+            var c8=document.getElementById('c8');
+            var c9=document.getElementById('c9');
+            if(c1.innerHTML == "o" && c2.innerHTML == "o" && c3.innerHTML == "o"){addo('c1','c2','c3'); alert("o won")}
+            if(c1.innerHTML == "o" && c4.innerHTML == "o" && c7.innerHTML == "o"){addo('c1','c4','c7'); alert("o won")}
+            if(c1.innerHTML == "o" && c5.innerHTML == "o" && c9.innerHTML == "o"){addo('c1','c5','c9'); alert("o won")}
+            if(c2.innerHTML == "o" && c5.innerHTML == "o" && c8.innerHTML == "o"){addo('c2','c5','c8'); alert("o won")}
+            if(c3.innerHTML == "o" && c6.innerHTML == "o" && c9.innerHTML == "o"){addo('c3','c6','c9'); alert("o won")}
+            if(c3.innerHTML == "o" && c5.innerHTML == "o" && c7.innerHTML == "o"){addo('c3','c5','c7'); alert("o won")}
+            if(c4.innerHTML == "o" && c5.innerHTML == "o" && c6.innerHTML == "o"){addo('c4','c5','c6'); alert("o won")}
+            if(c7.innerHTML == "o" && c9.innerHTML == "o" && c8.innerHTML == "o"){addo('c7','c9','c8'); alert("o won")}
+        }
+        const co=()=>
+        {
+            count++;
+            if(count==9)
+            {
+                alert("its draw");
+            }
+        }
+        const one=(c)=>
+        {   
+            if(chance==0)
+            {   
+                if(document.getElementById(c.id).innerHTML==''){
+                    co();
+                    document.getElementById(c.id).innerHTML="x";
+                    adduser('x','player x',c.id);
+                    chance=1; 
+                    document.getElementById(c.id).readOnly=true;
+                    xwin();
+                }
+            }
+            else{
+                if(chance==1)
+                {
+                if(document.getElementById(c.id).innerHTML==''){
+                    co();     
+                    document.getElementById(c.id).innerHTML="o";
+                    adduser('o','player o',c.id);
+                    chance=0;
+                    document.getElementById(c.id).disabled='true';
+                    owin();
+                
+                }}
+            }
+        }
+        const load=()=>
+        {
+            
+        }
+        const adduser=(i,n,id)=>
+        { 
+            const baseUrl = 'http://localhost:4545/tic';
+            fetch(baseUrl+'/update',{
+                
+                method : 'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                        _id:i,
+                        name:n,
+                        moves:id
+                    })
+                })
+        }
+        const add=(a,b,c)=>
+        { 
+            const baseUrl = 'http://localhost:4545/tic';
+            fetch(baseUrl+'/add',{
+                
+                method : 'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                        name:"player x",
+                        win:"x won",
+                        moveswin:[a,b,c]
+                    })
+                })
+        }
+        const addo=(a,b,c)=>
+        { 
+            const baseUrl = 'http://localhost:4545/tic';
+            fetch(baseUrl+'/add',{
+                
+                method : 'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify({
+                        
+                        name:"player o",
+                        win:"o won",
+                        moveswin:[a,b,c]
+                    })
+                })
+        }
+
+        </script>
+    </head>
+    <body onload="load()">
+        <table id="board">
+            <tr>
+                <td id="c1" onclick="one(this)"></td>
+                <td id="c2" onclick="one(this)"></td>
+                <td id="c3" onclick="one(this)"></td>
+            </tr>
+            <tr>
+                <td id="c4" onclick="one(this)"></td>
+                <td id="c5" onclick="one(this)"></td>
+                <td id="c6" onclick="one(this)"></td>
+            </tr>
+            <tr>
+                <td id="c7" onclick="one(this)"></td>
+                <td id="c8" onclick="one(this)"></td>
+                <td id="c9" onclick="one(this)"></td>
+            </tr>
+        </table>
+        <button>play</button>
+        </body>
+</html>
